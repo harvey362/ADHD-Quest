@@ -17,7 +17,10 @@ const QuickCapture = () => {
   const [currentTool, setCurrentTool] = useState('pencil'); // 'pencil' or 'eraser'
   const canvasRef = useRef(null);
   const [canvasContext, setCanvasContext] = useState(null);
-  
+
+  // Track initial load to prevent saving empty arrays before loading from localStorage
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
   // Load captures from localStorage
   useEffect(() => {
     const saved = localStorage.getItem('adhd_quest_captures');
@@ -37,17 +40,24 @@ const QuickCapture = () => {
         console.error('Error loading drawings:', e);
       }
     }
+
+    // Mark initial load as complete
+    setIsInitialLoad(false);
   }, []);
 
-  // Save captures to localStorage
+  // Save captures to localStorage (skip on initial render)
   useEffect(() => {
-    localStorage.setItem('adhd_quest_captures', JSON.stringify(captures));
-  }, [captures]);
+    if (!isInitialLoad) {
+      localStorage.setItem('adhd_quest_captures', JSON.stringify(captures));
+    }
+  }, [captures, isInitialLoad]);
 
-  // Save drawings to localStorage
+  // Save drawings to localStorage (skip on initial render)
   useEffect(() => {
-    localStorage.setItem('adhd_quest_drawings', JSON.stringify(drawings));
-  }, [drawings]);
+    if (!isInitialLoad) {
+      localStorage.setItem('adhd_quest_drawings', JSON.stringify(drawings));
+    }
+  }, [drawings, isInitialLoad]);
 
   // Initialize canvas
   useEffect(() => {
