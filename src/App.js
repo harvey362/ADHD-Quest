@@ -5,7 +5,11 @@ import Dashboard from './components/Dashboard';
 import CompletedQuests from './components/CompletedQuests';
 import Settings from './components/Settings';
 import QuickCapture from './components/QuickCapture';
+import PomodoroTimer from './components/PomodoroTimer';
+import CalendarView from './components/CalendarView';
+import TimeTrainer from './components/TimeTrainer';
 import PlaceholderWidget from './components/PlaceholderWidget';
+import { initSoundEffects, toggleSound, playSound } from './utils/soundEffects';
 import './styles/global.css';
 
 function App() {
@@ -54,6 +58,12 @@ function App() {
     localStorage.setItem('adhd_quest_completed', JSON.stringify(completedQuests));
   }, [completedQuests]);
 
+  // Initialize and sync sound effects with settings
+  useEffect(() => {
+    initSoundEffects(settings.soundEnabled);
+    toggleSound(settings.soundEnabled);
+  }, [settings.soundEnabled]);
+
   // Apply theme
   const applyTheme = (color) => {
     document.documentElement.style.setProperty('--color-green', color);
@@ -70,6 +80,18 @@ function App() {
     const g = Math.max(0, Math.min(255, ((num >> 8) & 0x00FF) + amount));
     const b = Math.max(0, Math.min(255, (num & 0x0000FF) + amount));
     return `#${(0x1000000 + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+  };
+
+  // Handle widget selection with sound
+  const handleSelectWidget = (widgetId) => {
+    playSound('click');
+    setCurrentWidget(widgetId);
+  };
+
+  // Handle back to arcade with sound
+  const handleBackToArcade = () => {
+    playSound('click');
+    setCurrentWidget(null);
   };
 
   // Handle completing a quest
@@ -166,28 +188,16 @@ function App() {
         );
       
       case 'pomodoro':
-        return <PlaceholderWidget name="FOCUS TIMER" icon="🍅" description="Pomodoro technique timer - Coming soon!" />;
-      
-      case 'mood-tracker':
-        return <PlaceholderWidget name="MOOD LOGGER" icon="😊" description="Track your energy and emotions - Coming soon!" />;
-      
+        return <PomodoroTimer />;
+
       case 'quick-capture':
         return <QuickCapture />;
-      
+
       case 'calendar':
-        return <PlaceholderWidget name="CALENDAR" icon="📅" description="Daily planning view - Coming soon!" />;
-      
-      case 'daily-review':
-        return <PlaceholderWidget name="DAILY REVIEW" icon="🌅" description="Planning and reflection - Coming soon!" />;
-      
-      case 'distraction-log':
-        return <PlaceholderWidget name="DISTRACTION LOG" icon="🎯" description="Monitor distractions - Coming soon!" />;
-      
-      case 'medication':
-        return <PlaceholderWidget name="MED REMINDERS" icon="💊" description="Medication tracking - Coming soon!" />;
-      
+        return <CalendarView />;
+
       case 'time-estimate':
-        return <PlaceholderWidget name="TIME TRAINER" icon="⏰" description="Improve time estimation - Coming soon!" />;
+        return <TimeTrainer />;
       
       default:
         return <PlaceholderWidget name="UNKNOWN" icon="❓" description="Widget not found" />;
@@ -205,8 +215,8 @@ function App() {
   if (!currentWidget) {
     return (
       <div className={`App ${settings.scanlines ? 'scanlines' : ''}`}>
-        <WidgetLibrary 
-          onSelectWidget={setCurrentWidget}
+        <WidgetLibrary
+          onSelectWidget={handleSelectWidget}
           userSettings={settings}
         />
       </div>
@@ -216,7 +226,7 @@ function App() {
   return (
     <div className={`App ${settings.scanlines ? 'scanlines' : ''}`}>
       <div className="widget-container">
-        <button className="back-to-arcade-btn" onClick={() => setCurrentWidget(null)}>
+        <button className="back-to-arcade-btn" onClick={handleBackToArcade}>
           ◄ BACK TO ARCADE
         </button>
         <div className="widget-content">

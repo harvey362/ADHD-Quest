@@ -100,7 +100,7 @@ const Settings = ({ userSettings, onUpdateSettings, onResetAll, onResetXP }) => 
             />
             <span>SOUND EFFECTS</span>
           </label>
-          <p className="setting-description">Enable audio feedback (Coming soon)</p>
+          <p className="setting-description">Enable retro sound effects for interactions</p>
         </div>
       </div>
 
