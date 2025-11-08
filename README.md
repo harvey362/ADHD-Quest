@@ -21,10 +21,15 @@ Complete micro-steps → Earn XP → Level up from 1-100 → Feel awesome! 🎉
 - ⚡ **10 XP per Subtask** - Instant dopamine hits for ADHD brains
 - 📊 **Level System** - Progress from Level 1-100 (exponential XP curve)
 - ⏱️ **Speedrun Mode** - Track how long each subtask takes
+- 🍅 **Pomodoro Timer** - 25/5 min focus/break sessions with stats
+- 📝 **Quick Capture** - Brain dump with notes and drawing canvas
+- 📅 **Calendar View** - See your quests on a timeline
+- ⏰ **Time Trainer** - Practice and improve time estimation skills
 - 🏆 **Quest Log** - View completed quests with times & XP earned
 - 🎨 **6 Color Themes** - Green, Red, Cyan, Purple, Yellow, Orange
+- 🔊 **Retro Sound Effects** - Toggle-able Web Audio API sounds
 - 📺 **CRT Scanlines** - Optional retro screen effect
-- 🎪 **Arcade Widget Library** - 11 tools (8 coming soon!)
+- 🎪 **Arcade Widget Library** - 7 fully functional productivity tools!
 
 ---
 
@@ -90,11 +95,78 @@ Want to track your time?
 
 ### Arcade Widgets
 
-Currently available:
-- 🎯 **Task Crusher** - Main AI task breakdown tool (fully functional)
-- 🏆 **Quest Log** - View completed quests with stats (fully functional)
-- ⚙️ **Settings** - Themes, scanlines, data management (fully functional)
-- 🏗️ **8 More Widgets** - Coming soon! (Focus Timer, Quick Capture, Mood Logger, Calendar, Daily Review, Distraction Log, Med Reminders, Time Trainer)
+All 7 widgets are fully functional:
+
+1. ⚡ **Task Crusher** - AI-powered task breakdown with 3 granularity levels
+2. 📜 **Quest Log** - Completed quests archive with stats and restore function
+3. 🍅 **Pomodoro Timer** - Focus/break sessions with visual countdown and tracking
+4. 📝 **Quick Capture** - Rapid notes and drawing canvas for brain dumps
+5. 📅 **Calendar View** - Monthly calendar showing active and completed quests
+6. ⏰ **Time Trainer** - Practice and game modes to improve time estimation
+7. ⚙️ **Settings** - Themes, sound effects, scanlines, data management
+
+---
+
+## 🎮 Widget Details
+
+### ⚡ Task Crusher
+The core widget that uses AI to break down overwhelming tasks into micro-steps:
+- Choose from 3 granularity levels (Quick, Detailed, Very Detailed)
+- Optional Speedrun Mode to track time per subtask
+- Earn 10 XP per completed subtask
+- Live XP bar and level progression
+- Priority markers and visual progress tracking
+
+### 📜 Quest Log
+Archive of all your completed quests:
+- View completion date, XP earned, and speedrun times
+- Sort by date or XP earned
+- Restore quests back to active (experimental)
+- Delete individual quests
+- Statistics overview
+
+### 🍅 Pomodoro Timer
+Classic Pomodoro Technique implementation:
+- 25-minute focus sessions
+- 5-minute break sessions
+- Auto-switching between modes
+- Visual circular progress indicator
+- Session statistics (focus count, break count, total minutes)
+- Color-coded modes (red for focus, cyan for breaks)
+
+### 📝 Quick Capture
+Rapid brain dump for ADHD thought spirals:
+- **Notes Tab**: Quick text capture with tags, search, and pinning
+- **Drawing Tab**: Canvas for visual thinkers with color palette and tools
+- Timestamped entries ("Just now", "5m ago")
+- Tag filtering and search across all captures
+- Gallery view for saved drawings
+
+### 📅 Calendar View
+Visual timeline of your quest activity:
+- Monthly calendar grid
+- Shows active tasks with target dates (⚡)
+- Displays completed quests by completion date (✓)
+- Click any date to see full quest details
+- Navigate months with prev/next/today buttons
+- Color-coded indicators for activity levels
+
+### ⏰ Time Trainer
+Improve your time estimation skills (crucial for ADHD task planning):
+- **Practice Mode**: Time yourself and estimate duration
+- **Game Mode**: Try to stop at a specific target time
+- Accuracy tracking with percentage feedback
+- Statistics: total attempts, average accuracy, average error
+- Recent attempts history with color-coded accuracy
+- Instant feedback and improvement tracking
+
+### ⚙️ Settings
+Customize your experience:
+- 6 color themes (Classic Green, Danger Red, Cool Cyan, Retro Purple, Arcade Yellow, Flame Orange)
+- Toggle CRT scanline effect
+- Enable/disable retro sound effects
+- Data management (reset XP, reset all data)
+- App version and build info
 
 ---
 
@@ -118,6 +190,8 @@ Why? Because **retro aesthetics = fewer distractions = better focus** for ADHD b
 - **Styling:** Pure CSS3 (no frameworks)
 - **AI:** Anthropic Claude API (Sonnet 4)
 - **Storage:** localStorage (client-side only)
+- **Audio:** Web Audio API (programmatic retro sounds)
+- **Canvas:** HTML5 Canvas API (drawing widget)
 - **Fonts:** Press Start 2P, VT323 (Google Fonts)
 
 **No backend required!** Everything runs in your browser.
@@ -126,59 +200,79 @@ Why? Because **retro aesthetics = fewer distractions = better focus** for ADHD b
 
 ## 📊 Project Status
 
-**Current Version:** v0.3.1 - Arcade Edition  
-**Status:** ✅ Production Ready - Core Features Complete
+**Current Version:** v0.4.0 - Full Widget Suite
+**Status:** ✅ Feature Complete - All Core Widgets Implemented
 
 ### ✅ Completed Features
 - [x] AI task breakdown with 3 granularity levels
 - [x] XP system (10 XP per subtask, levels 1-100)
 - [x] Speedrun timer with per-subtask tracking
-- [x] Completed quest log with sorting
+- [x] Completed quest log with sorting and restore
+- [x] Pomodoro Timer widget (25/5 min sessions)
+- [x] Quick Capture widget (notes + drawing canvas)
+- [x] Calendar View widget (monthly timeline)
+- [x] Time Trainer widget (estimation practice)
+- [x] Sound effects system (Web Audio API)
 - [x] 6 color themes with instant switching
 - [x] Arcade widget library UI
-- [x] Settings panel (theme, scanlines, data reset)
-- [x] localStorage persistence
+- [x] Settings panel (theme, sounds, scanlines, data reset)
+- [x] localStorage persistence for all widgets
 
-### 🚧 Coming Soon
-- [ ] Pomodoro Focus Timer widget
-- [ ] Quick Capture (brain dump) widget
-- [ ] Mood Logger widget
-- [ ] Calendar view widget
-- [ ] Sound effects system
-- [ ] Better quest restore function
-- [ ] Badges & achievements
+### 🚧 Future Enhancements
+- [ ] Badges & achievements system
 - [ ] Cloud sync + user accounts
+- [ ] Mobile app version
+- [ ] Streak tracking
+- [ ] Daily/weekly statistics dashboard
+- [ ] Export data functionality
+- [ ] Custom sound packs
 
 ---
 
 ## 📁 Project Structure
 
 ```
-adhd-productivity-app/
+ADHD-Quest/
 ├── .env (create this - see setup instructions)
 ├── package.json
 ├── public/
 │   └── index.html
 └── src/
-    ├── App.js (main state management)
+    ├── App.js (main state & routing)
     ├── index.js
     ├── components/
     │   ├── LandingPage.jsx
     │   ├── WidgetLibrary.jsx (arcade cabinet)
-    │   ├── Dashboard.jsx (Task Crusher)
+    │   ├── Dashboard.jsx (Task Crusher widget)
     │   ├── TaskInput.jsx
     │   ├── TaskList.jsx
     │   ├── TaskItem.jsx
     │   ├── XPBar.jsx
-    │   ├── CompletedQuests.jsx
-    │   ├── Settings.jsx
+    │   ├── CompletedQuests.jsx (Quest Log widget)
+    │   ├── PomodoroTimer.jsx (Pomodoro widget)
+    │   ├── QuickCapture.jsx (Quick Capture widget)
+    │   ├── CalendarView.jsx (Calendar widget)
+    │   ├── TimeTrainer.jsx (Time Trainer widget)
+    │   ├── Settings.jsx (Settings widget)
     │   └── PlaceholderWidget.jsx
     ├── services/
     │   └── aiService.js (Claude API calls)
     ├── utils/
-    │   └── xpSystem.js (XP calculations)
+    │   ├── xpSystem.js (XP calculations)
+    │   ├── rankSystem.js (level rankings)
+    │   ├── achievementSystem.js (achievements)
+    │   └── soundEffects.js (Web Audio API)
     └── styles/
-        └── *.css (component styles)
+        ├── global.css (theme variables)
+        ├── landingpage.css
+        ├── widgetlibrary.css
+        ├── dashboard.css
+        ├── completedquests.css
+        ├── pomodoro.css
+        ├── quickcapture.css
+        ├── calendar.css
+        ├── timetrainer.css
+        └── settings.css
 ```
 
 ---
