@@ -10,7 +10,7 @@
 
 ## 🕹️ What Is This?
 
-**ADHD Quest** is a gamified productivity app designed specifically for people with ADHD and executive dysfunction. It uses AI to break down overwhelming tasks into ultra-granular micro-steps (like "stand up", "touch the suitcase", "open the suitcase") so you can actually **start** instead of being paralyzed.
+**ADHD Quest** is a gamified productivity app designed specifically for people with ADHD and executive dysfunction. It uses AI to break down overwhelming tasks into ultra-granular micro-steps (like "stand up", "touch the suitcase", "open the suitcase") so you can actually **start** instead of being paralyzed. (I vibe-coded this entirely btw)
 
 Complete micro-steps → Earn XP → Level up from 1-100 → Feel awesome! 🎉
 
