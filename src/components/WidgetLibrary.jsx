@@ -25,13 +25,6 @@ const WidgetLibrary = ({ onSelectWidget, userSettings }) => {
       description: 'Pomodoro technique timer'
     },
     {
-      id: 'mood-tracker',
-      name: 'MOOD LOGGER',
-      icon: '😊',
-      flavorText: '▼ LOG MOOD',
-      description: 'Track energy and emotions'
-    },
-    {
       id: 'quick-capture',
       name: 'QUICK CAPTURE',
       icon: '📝',
@@ -44,27 +37,6 @@ const WidgetLibrary = ({ onSelectWidget, userSettings }) => {
       icon: '📅',
       flavorText: '▼ VIEW SCHEDULE',
       description: 'Daily planning view'
-    },
-    {
-      id: 'daily-review',
-      name: 'DAILY REVIEW',
-      icon: '🌅',
-      flavorText: '▼ PLAN DAY',
-      description: 'Planning and reflection'
-    },
-    {
-      id: 'distraction-log',
-      name: 'DISTRACTION LOG',
-      icon: '🎯',
-      flavorText: '▼ TRACK FOCUS',
-      description: 'Monitor distractions'
-    },
-    {
-      id: 'medication',
-      name: 'MED REMINDERS',
-      icon: '💊',
-      flavorText: '▼ SET ALERTS',
-      description: 'Medication tracking'
     },
     {
       id: 'time-estimate',
