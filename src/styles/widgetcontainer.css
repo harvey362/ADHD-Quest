@@ -1,0 +1,43 @@
+/* Widget Container Styles */
+
+.widget-container {
+  min-height: 100vh;
+  background-color: var(--color-black);
+  position: relative;
+}
+
+.back-to-arcade-btn {
+  position: fixed;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  z-index: 100;
+  background-color: var(--color-black);
+  border: 3px solid var(--color-green);
+  color: var(--color-green);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.back-to-arcade-btn:hover {
+  background-color: var(--color-green);
+  color: var(--color-black);
+  transform: translateX(-5px);
+  box-shadow: 0 0 40px var(--color-green);
+}
+
+.widget-content {
+  padding-top: var(--spacing-md);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .back-to-arcade-btn {
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 12px;
+  }
+}

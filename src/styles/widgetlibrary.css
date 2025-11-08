@@ -1,0 +1,221 @@
+/* Widget Library - Arcade Cabinet Styles */
+
+.widget-library {
+  min-height: 100vh;
+  background-color: var(--color-black);
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.arcade-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 3px solid var(--color-green);
+}
+
+.arcade-title {
+  font-size: 48px;
+  margin-bottom: var(--spacing-xs);
+  animation: pulse 2s infinite;
+}
+
+.arcade-subtitle {
+  font-family: var(--font-secondary);
+  font-size: 20px;
+  color: var(--color-green-dark);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Cartridge Grid - 3 columns */
+.cartridge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto var(--spacing-xl);
+  padding: var(--spacing-md);
+}
+
+/* Individual Cartridge - Arcade Game Style */
+.cartridge {
+  position: relative;
+  border: 4px solid var(--color-green);
+  background-color: var(--color-black);
+  padding: var(--spacing-lg) var(--spacing-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+/* Cartridge Hover Effect - "Pop Out" */
+.cartridge:hover {
+  transform: translateY(-10px);
+  border-color: var(--color-green-light);
+  box-shadow: 
+    0 10px 40px var(--color-green),
+    inset 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.cartridge:hover .cartridge-label::before,
+.cartridge:hover .cartridge-label::after {
+  opacity: 1;
+}
+
+.cartridge:hover .cartridge-icon {
+  transform: scale(1.2);
+  text-shadow: 0 0 30px var(--color-green);
+}
+
+.cartridge:hover .cartridge-shine {
+  opacity: 1;
+  animation: shine 1.5s infinite;
+}
+
+/* Cartridge Label */
+.cartridge-label {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-green);
+  position: relative;
+  padding: 0 var(--spacing-sm);
+  text-shadow: 0 0 5px var(--color-green);
+}
+
+/* Arrows appear on hover */
+.cartridge-label::before,
+.cartridge:label::after {
+  content: '►';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 12px;
+}
+
+.cartridge-label::before {
+  content: '►';
+  left: 0;
+}
+
+.cartridge-label::after {
+  content: '◄';
+  right: 0;
+}
+
+/* Cartridge Icon */
+.cartridge-icon {
+  font-size: 64px;
+  margin: var(--spacing-md) 0;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px var(--color-green));
+}
+
+/* Cartridge Flavor Text */
+.cartridge-flavor {
+  font-size: 10px;
+  font-family: var(--font-secondary);
+  color: var(--color-green-dark);
+  text-align: center;
+  margin-top: var(--spacing-sm);
+}
+
+/* Shine effect overlay */
+.cartridge-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 0, 0.3),
+    transparent
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Active/Selected state */
+.cartridge:active {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 5px 20px var(--color-green),
+    inset 0 0 30px rgba(0, 255, 0, 0.4);
+}
+
+/* Arcade Footer */
+.arcade-footer {
+  text-align: center;
+  padding-top: var(--spacing-md);
+  border-top: 2px solid var(--color-green);
+  margin-top: var(--spacing-xl);
+}
+
+.arcade-footer p {
+  font-size: 14px;
+  color: var(--color-green-dark);
+  animation: blink 2s infinite;
+}
+
+/* Responsive - 2 columns on tablets */
+@media (max-width: 1024px) {
+  .cartridge-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+  
+  .arcade-title {
+    font-size: 32px;
+  }
+  
+  .cartridge {
+    min-height: 180px;
+  }
+  
+  .cartridge-icon {
+    font-size: 48px;
+  }
+}
+
+/* Responsive - 1 column on mobile */
+@media (max-width: 640px) {
+  .cartridge-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .arcade-title {
+    font-size: 24px;
+  }
+  
+  .arcade-subtitle {
+    font-size: 14px;
+  }
+  
+  .cartridge {
+    min-height: 150px;
+    padding: var(--spacing-md);
+  }
+  
+  .cartridge-label {
+    font-size: 14px;
+  }
+  
+  .cartridge-icon {
+    font-size: 40px;
+  }
+}

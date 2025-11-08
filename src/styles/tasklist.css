@@ -1,0 +1,49 @@
+/* Task List Component Styles */
+
+.task-list {
+  margin-top: var(--spacing-lg);
+}
+
+.task-list-title {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-h2);
+  text-shadow: 0 0 10px var(--color-green);
+}
+
+.task-list-empty {
+  border: 3px dashed var(--color-green-dark);
+  padding: var(--spacing-xl);
+  text-align: center;
+  margin-top: var(--spacing-lg);
+}
+
+.task-list-empty p {
+  font-size: 20px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.empty-subtitle {
+  font-family: var(--font-secondary) !important;
+  font-size: 16px !important;
+  color: var(--color-green-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .task-list-title {
+    font-size: var(--font-size-h3);
+  }
+  
+  .task-list-empty {
+    padding: var(--spacing-lg);
+  }
+  
+  .task-list-empty p {
+    font-size: 16px;
+  }
+  
+  .empty-subtitle {
+    font-size: 14px !important;
+  }
+}

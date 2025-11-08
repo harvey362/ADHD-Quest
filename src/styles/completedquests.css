@@ -1,0 +1,297 @@
+/* Completed Quests Component Styles */
+
+.completed-quests,
+.completed-quests-empty {
+  padding: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.completed-quests-empty {
+  text-align: center;
+  border: 3px dashed var(--color-green-dark);
+  padding: var(--spacing-xl);
+}
+
+.completed-quests-empty h2 {
+  margin-bottom: var(--spacing-md);
+}
+
+.completed-quests-empty p {
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.completed-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 3px solid var(--color-green);
+}
+
+.completed-header h2 {
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 0 0 10px var(--color-green);
+}
+
+.completed-stats {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  color: var(--color-green-dark);
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.completed-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-sm);
+  border: 2px solid var(--color-green-dark);
+}
+
+.completed-controls label {
+  font-size: 12px;
+  color: var(--color-green);
+}
+
+.sort-select {
+  flex: 1;
+  background-color: var(--color-black);
+  border: 2px solid var(--color-green);
+  color: var(--color-green);
+  padding: 8px;
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.completed-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.completed-quest-item {
+  border: 3px solid var(--color-green);
+  background-color: var(--color-black);
+  transition: all 0.3s ease;
+}
+
+.completed-quest-item:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.completed-quest-item.expanded {
+  border-color: var(--color-green-light);
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+}
+
+.completed-quest-header {
+  padding: var(--spacing-md);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  user-select: none;
+}
+
+.completed-quest-title-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex: 1;
+}
+
+.expand-icon {
+  color: var(--color-green);
+  font-size: 12px;
+  min-width: 20px;
+}
+
+.completed-quest-title-section h3 {
+  font-size: 18px;
+  color: var(--color-green);
+  margin: 0;
+  word-break: break-word;
+}
+
+.completed-quest-meta {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.quest-xp {
+  color: var(--color-green-light);
+  font-weight: bold;
+  padding: 4px 8px;
+  border: 1px solid var(--color-green-light);
+}
+
+.quest-time {
+  color: var(--color-green);
+  padding: 4px 8px;
+  border: 1px solid var(--color-green);
+}
+
+.quest-date {
+  color: var(--color-green-dark);
+  padding: 4px 8px;
+  border: 1px solid var(--color-green-dark);
+}
+
+.completed-quest-details {
+  padding: var(--spacing-md);
+  border-top: 2px dashed var(--color-green-dark);
+}
+
+.quest-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 10px;
+  color: var(--color-green-dark);
+}
+
+.info-value {
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  color: var(--color-green);
+}
+
+.quest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.quest-tag {
+  font-size: 10px;
+  font-family: var(--font-secondary);
+  color: var(--color-green-dark);
+  border: 1px solid var(--color-green-dark);
+  padding: 2px 6px;
+}
+
+.quest-subtasks {
+  margin-bottom: var(--spacing-md);
+}
+
+.quest-subtasks h4 {
+  font-size: 14px;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-green);
+}
+
+.subtask-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.completed-subtask {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) 0;
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  color: var(--color-green-dark);
+}
+
+.subtask-check {
+  color: var(--color-green);
+  font-size: 16px;
+}
+
+.subtask-text {
+  flex: 1;
+}
+
+.subtask-time {
+  font-size: 12px;
+  color: var(--color-green-darker);
+  padding: 2px 6px;
+  border: 1px solid var(--color-green-darker);
+}
+
+.quest-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  border-top: 2px dashed var(--color-green-darker);
+}
+
+.restore-btn,
+.delete-btn {
+  flex: 1;
+  padding: var(--spacing-sm);
+  font-size: 12px;
+  border-width: 2px;
+}
+
+.restore-btn {
+  background-color: var(--color-black);
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.restore-btn:hover {
+  background-color: var(--color-green);
+  color: var(--color-black);
+}
+
+.delete-btn {
+  background-color: transparent;
+  border-color: var(--color-green-dark);
+  color: var(--color-green-dark);
+}
+
+.delete-btn:hover {
+  border-color: var(--color-green);
+  color: var(--color-green);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .completed-quest-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .completed-quest-meta {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .quest-info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quest-actions {
+    flex-direction: column;
+  }
+}

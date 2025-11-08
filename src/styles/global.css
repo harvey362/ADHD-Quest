@@ -1,0 +1,282 @@
+/* ADHD Productivity App - Global Styles */
+/* Strict Black & Green Theme - 8-bit/Pixel Aesthetic */
+
+/* FR-00-01: Pure black background */
+/* FR-00-02: Bright green text */
+/* FR-00-04: 8-bit/pixel font for all typography */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* FR-00-03: ONLY black and green colors */
+  --color-black: #000000;
+  --color-green: #00FF00;
+  --color-green-dark: #00AA00;
+  --color-green-darker: #007700;
+  --color-green-light: #00FF00;
+  
+  /* Typography */
+  --font-primary: 'Press Start 2P', cursive;
+  --font-secondary: 'VT323', monospace;
+  
+  /* FR-00-22: Font size scale */
+  --font-size-h1: 48px;
+  --font-size-h2: 32px;
+  --font-size-h3: 24px;
+  --font-size-body: 16px;
+  --font-size-small: 12px;
+  
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 48px;
+  --spacing-xl: 96px;
+  
+  /* FR-00-06: Wireframe borders */
+  --border-width: 3px;
+  --border-style: solid;
+  --border-color: var(--color-green);
+}
+
+body {
+  background-color: var(--color-black);
+  color: var(--color-green);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* FR-00-24: All text maintains pixel font styling */
+h1, h2, h3, h4, h5, h6, p, a, button, input, label, span, div {
+  font-family: var(--font-primary);
+  color: var(--color-green);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  line-height: 1.4;
+  margin-bottom: var(--spacing-sm);
+}
+
+p {
+  font-family: var(--font-secondary);
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: var(--spacing-sm);
+}
+
+a {
+  color: var(--color-green);
+  text-decoration: none;
+  border-bottom: 2px solid var(--color-green);
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-black);
+  background-color: var(--color-green);
+  border-bottom-color: var(--color-green);
+}
+
+/* FR-00-05: Pixel-style buttons with no rounded corners */
+button {
+  background-color: var(--color-black);
+  color: var(--color-green);
+  border: var(--border-width) var(--border-style) var(--color-green);
+  padding: 12px 24px;
+  font-size: var(--font-size-body);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  font-family: var(--font-primary);
+}
+
+button:hover {
+  background-color: var(--color-green);
+  color: var(--color-black);
+  box-shadow: 0 0 20px var(--color-green);
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+
+/* FR-00-06: Wireframe borders and dividers */
+.border-box {
+  border: var(--border-width) var(--border-style) var(--color-green);
+  padding: var(--spacing-md);
+}
+
+.border-dashed {
+  border-style: dashed;
+}
+
+/* Optional: Retro CRT effect */
+.crt-effect {
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.98; }
+  50% { opacity: 1; }
+  100% { opacity: 0.98; }
+}
+
+/* Scanline effect (optional) */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 255, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Grid background pattern (optional) */
+.grid-bg {
+  background-image: 
+    linear-gradient(var(--color-green-darker) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-green-darker) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.1;
+}
+
+/* Glow effect */
+.glow {
+  text-shadow: 0 0 10px var(--color-green);
+}
+
+.glow-strong {
+  text-shadow: 0 0 20px var(--color-green), 0 0 30px var(--color-green);
+}
+
+/* Loading animation */
+.blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  :root {
+    --font-size-h1: 36px;
+    --font-size-h2: 24px;
+    --font-size-h3: 18px;
+    --font-size-body: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-h1: 24px;
+    --font-size-h2: 18px;
+    --font-size-h3: 16px;
+    --font-size-body: 12px;
+    --spacing-lg: 32px;
+    --spacing-xl: 64px;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+}
+
+/* Back to Library Button */
+.widget-container {
+  min-height: 100vh;
+  background-color: var(--color-black);
+  position: relative;
+}
+
+.back-to-library-btn {
+  position: fixed;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  z-index: 100;
+  background-color: var(--color-black);
+  border: 3px solid var(--color-green);
+  color: var(--color-green);
+  padding: 12px 24px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.back-to-library-btn:hover {
+  background-color: var(--color-green);
+  color: var(--color-black);
+  box-shadow: 0 0 40px var(--color-green);
+  transform: translateX(-5px);
+}
+
+.back-to-library-btn:active {
+  transform: translateX(-3px);
+}
+
+@media (max-width: 768px) {
+  .back-to-library-btn {
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}

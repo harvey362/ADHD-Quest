@@ -1,0 +1,218 @@
+/* Persistent XP Bar - Always visible at top */
+
+.persistent-xp-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--color-black);
+  border-bottom: 3px solid var(--color-green);
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: 0 4px 20px rgba(0, 255, 0, 0.3);
+}
+
+.persistent-xp-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+/* Rank Info */
+.rank-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-width: 200px;
+}
+
+.rank-icon {
+  font-size: 24px;
+  filter: drop-shadow(0 0 10px var(--color-green));
+  animation: pulse 2s infinite;
+}
+
+.rank-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-green);
+  text-shadow: 0 0 10px var(--color-green);
+}
+
+.rank-separator {
+  color: var(--color-green-dark);
+  font-size: 14px;
+}
+
+.level-display {
+  font-size: 16px;
+  color: var(--color-green);
+  font-weight: bold;
+}
+
+/* XP Bar Section */
+.xp-bar-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-width: 300px;
+}
+
+.xp-bar-track {
+  flex: 1;
+  height: 20px;
+  border: 2px solid var(--color-green);
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  background-color: var(--color-green);
+  transition: width 0.5s ease;
+  position: relative;
+  box-shadow: 0 0 10px var(--color-green);
+}
+
+.xp-bar-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.xp-text {
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  color: var(--color-green);
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+/* Next Rank Preview */
+.next-rank-preview {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 4px var(--spacing-sm);
+  border: 2px dashed var(--color-green-dark);
+  background-color: rgba(0, 255, 0, 0.05);
+}
+
+.next-rank-text {
+  font-size: 12px;
+  color: var(--color-green-dark);
+}
+
+.next-rank-icon {
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.next-rank-name {
+  font-size: 12px;
+  color: var(--color-green-dark);
+}
+
+/* Badges Button */
+.badges-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: transparent;
+  border: 2px solid var(--color-green);
+  color: var(--color-green);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.badges-btn:hover {
+  background-color: var(--color-green);
+  color: var(--color-black);
+  box-shadow: 0 0 20px var(--color-green);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .persistent-xp-content {
+    gap: var(--spacing-sm);
+  }
+  
+  .rank-info {
+    min-width: 150px;
+  }
+  
+  .next-rank-preview {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .persistent-xp-bar {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .persistent-xp-content {
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+  
+  .rank-info {
+    min-width: auto;
+  }
+  
+  .rank-name {
+    font-size: 14px;
+  }
+  
+  .level-display {
+    font-size: 14px;
+  }
+  
+  .xp-bar-section {
+    min-width: 100%;
+    order: 3;
+  }
+  
+  .badges-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .xp-text {
+    font-size: 12px;
+    min-width: 100px;
+  }
+}
+
+/* Space below for sticky bar */
+body {
+  padding-top: 70px;
+}
+
+.App {
+  padding-top: 70px;
+}
+
+.widget-library,
+.landing-page {
+  padding-top: 70px;
+}

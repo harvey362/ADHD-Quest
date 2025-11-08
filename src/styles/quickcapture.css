@@ -1,0 +1,306 @@
+/* Quick Capture Widget Styles */
+
+.quick-capture {
+  padding: var(--spacing-lg);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.capture-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 3px solid var(--color-green);
+}
+
+.capture-header h2 {
+  margin-bottom: var(--spacing-xs);
+  text-shadow: 0 0 10px var(--color-green);
+}
+
+.capture-subtitle {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  color: var(--color-green-dark);
+}
+
+/* Input Section */
+.capture-input-section {
+  border: 3px solid var(--color-green);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  background-color: rgba(0, 255, 0, 0.02);
+}
+
+.capture-textarea {
+  width: 100%;
+  background-color: var(--color-black);
+  border: 2px solid var(--color-green);
+  color: var(--color-green);
+  padding: var(--spacing-sm);
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  resize: vertical;
+  margin-bottom: var(--spacing-sm);
+  outline: none;
+}
+
+.capture-textarea:focus {
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  border-color: var(--color-green-light);
+}
+
+.capture-input-row {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.capture-tags-input {
+  flex: 1;
+  background-color: var(--color-black);
+  border: 2px solid var(--color-green-dark);
+  color: var(--color-green);
+  padding: var(--spacing-sm);
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  outline: none;
+}
+
+.capture-tags-input:focus {
+  border-color: var(--color-green);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.capture-add-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 14px;
+  border-width: 3px;
+  white-space: nowrap;
+}
+
+.capture-add-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Filters */
+.capture-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  align-items: center;
+}
+
+.capture-search {
+  flex: 1;
+  min-width: 250px;
+  background-color: var(--color-black);
+  border: 2px solid var(--color-green-dark);
+  color: var(--color-green);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  outline: none;
+}
+
+.capture-search:focus {
+  border-color: var(--color-green);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.tag-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.tag-filter-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  background-color: transparent;
+  border: 2px solid var(--color-green-dark);
+  color: var(--color-green-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tag-filter-btn:hover {
+  border-color: var(--color-green);
+  color: var(--color-green);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.tag-filter-btn.active {
+  background-color: var(--color-green);
+  color: var(--color-black);
+  border-color: var(--color-green);
+}
+
+.clear-all-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  background-color: transparent;
+  border: 2px solid var(--color-green-dark);
+  color: var(--color-green-dark);
+  cursor: pointer;
+}
+
+.clear-all-btn:hover {
+  border-color: var(--color-green);
+  color: var(--color-green);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Captures List */
+.captures-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.captures-empty {
+  text-align: center;
+  padding: var(--spacing-xl);
+  border: 3px dashed var(--color-green-dark);
+}
+
+.captures-empty p {
+  font-size: 18px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.empty-subtitle {
+  font-family: var(--font-secondary) !important;
+  font-size: 14px !important;
+  color: var(--color-green-dark);
+}
+
+/* Capture Card */
+.capture-card {
+  border: 3px solid var(--color-green-dark);
+  padding: var(--spacing-md);
+  background-color: rgba(0, 255, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.capture-card:hover {
+  border-color: var(--color-green);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.capture-card.pinned {
+  border-color: var(--color-green-light);
+  background-color: rgba(0, 255, 0, 0.05);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.capture-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.capture-date {
+  font-size: 12px;
+  font-family: var(--font-secondary);
+  color: var(--color-green-darker);
+}
+
+.capture-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.capture-action-btn {
+  background-color: transparent;
+  border: 1px solid var(--color-green-dark);
+  color: var(--color-green-dark);
+  padding: 4px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.capture-action-btn:hover {
+  border-color: var(--color-green);
+  color: var(--color-green);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.capture-action-btn.delete:hover {
+  border-color: var(--color-green-light);
+  color: var(--color-green-light);
+}
+
+.capture-text {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  color: var(--color-green);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-sm);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.capture-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.capture-tag {
+  font-size: 10px;
+  font-family: var(--font-secondary);
+  color: var(--color-green-dark);
+  border: 1px solid var(--color-green-dark);
+  padding: 2px 6px;
+}
+
+/* Stats */
+.capture-stats {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 2px solid var(--color-green-dark);
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  color: var(--color-green-dark);
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .capture-input-row {
+    flex-direction: column;
+  }
+  
+  .capture-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .capture-search {
+    width: 100%;
+  }
+  
+  .tag-filters {
+    justify-content: center;
+  }
+  
+  .capture-stats {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .capture-stats span:nth-child(2n) {
+    display: none;
+  }
+}
