@@ -1,0 +1,204 @@
+/* Streak Widget Styles */
+
+.streak-widget {
+  background: rgba(0, 255, 0, 0.05);
+  border: 3px solid var(--color-green);
+  padding: var(--spacing-md);
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.streak-widget-compact {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: rgba(0, 255, 0, 0.1);
+  border: 2px solid var(--color-green);
+  padding: var(--spacing-xs);
+}
+
+.streak-widget-compact .streak-flame {
+  font-size: 24px;
+}
+
+.streak-widget-compact .streak-count {
+  font-family: var(--font-primary);
+  font-size: 18px;
+  color: var(--color-green);
+  text-shadow: 0 0 10px var(--color-green);
+}
+
+.streak-header h2 {
+  font-family: var(--font-primary);
+  font-size: 20px;
+  color: var(--color-green);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  text-shadow: 0 0 10px var(--color-green);
+}
+
+.streak-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: rgba(0, 255, 0, 0.02);
+  border: 2px solid var(--color-green-darker);
+}
+
+.streak-flame-large {
+  font-size: 80px;
+}
+
+.streak-current {
+  text-align: center;
+}
+
+.streak-number {
+  font-family: var(--font-primary);
+  font-size: 64px;
+  color: var(--color-green);
+  text-shadow: 0 0 20px var(--color-green);
+  line-height: 1;
+}
+
+.streak-label {
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  color: var(--color-green-dark);
+  text-transform: uppercase;
+  margin-top: var(--spacing-xs);
+}
+
+.streak-status {
+  text-align: center;
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  color: var(--color-green);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: rgba(0, 255, 0, 0.1);
+  border: 2px solid var(--color-green-darker);
+}
+
+.streak-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.streak-stat {
+  text-align: center;
+  padding: var(--spacing-sm);
+  border: 2px solid var(--color-green-darker);
+  background: rgba(0, 255, 0, 0.02);
+}
+
+.streak-stat .stat-label {
+  font-family: var(--font-primary);
+  font-size: 10px;
+  color: var(--color-green-dark);
+  margin-bottom: 4px;
+}
+
+.streak-stat .stat-value {
+  font-family: var(--font-primary);
+  font-size: 20px;
+  color: var(--color-green);
+  text-shadow: 0 0 10px var(--color-green);
+}
+
+.streak-progress {
+  margin-bottom: var(--spacing-md);
+}
+
+.streak-progress .progress-label {
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  color: var(--color-green);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.streak-progress .progress-bar {
+  height: 24px;
+  background: rgba(0, 255, 0, 0.1);
+  border: 2px solid var(--color-green-darker);
+  position: relative;
+  overflow: hidden;
+}
+
+.streak-progress .progress-fill {
+  height: 100%;
+  background: var(--color-green);
+  box-shadow: 0 0 10px var(--color-green);
+}
+
+.streak-multiplier {
+  text-align: center;
+  padding: var(--spacing-sm);
+  background: rgba(0, 255, 0, 0.2);
+  border: 3px solid var(--color-green);
+  margin-bottom: var(--spacing-md);
+  animation: pulse 2s infinite;
+}
+
+.multiplier-icon {
+  font-size: 24px;
+  margin-right: var(--spacing-xs);
+}
+
+.multiplier-text {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--color-green);
+  text-shadow: 0 0 10px var(--color-green);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--color-green);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--color-green);
+  }
+}
+
+.streak-warning {
+  text-align: center;
+  padding: var(--spacing-sm);
+  background: rgba(255, 0, 0, 0.1);
+  border: 2px solid #ff0000;
+  color: #ff0000;
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .streak-number {
+    font-size: 48px;
+  }
+
+  .streak-flame-large {
+    font-size: 60px;
+  }
+
+  .streak-stats {
+    grid-template-columns: 1fr;
+  }
+}
