@@ -48,7 +48,8 @@ const TaskItem = ({
   
   const getTotalElapsed = () => {
     if (!timerData?.taskStartTime) return 0;
-    return currentTime - timerData.taskStartTime;
+    const elapsed = currentTime - timerData.taskStartTime;
+    return Math.max(0, elapsed); // Ensure non-negative
   };
   
   const getSubtaskTime = (subtaskId) => {

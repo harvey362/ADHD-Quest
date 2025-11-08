@@ -13,13 +13,18 @@ const Dashboard = ({ onCompleteQuest, settings }) => {
   const [showLevelUpModal, setShowLevelUpModal] = useState(false);
   const [levelUpData, setLevelUpData] = useState(null);
   const [speedrunTimers, setSpeedrunTimers] = useState({});
-  
+
+  // Track initial mount to prevent saving on first render
+  const isInitialMountTasks = React.useRef(true);
+  const isInitialMountProfile = React.useRef(true);
+  const isInitialMountTimers = React.useRef(true);
+
   // Load data from localStorage on mount
   useEffect(() => {
     const savedTasks = localStorage.getItem('adhd_quest_tasks');
     const savedProfile = localStorage.getItem('adhd_quest_profile');
     const savedTimers = localStorage.getItem('adhd_quest_timers');
-    
+
     if (savedTasks) {
       try {
         setTasks(JSON.parse(savedTasks));
@@ -27,7 +32,7 @@ const Dashboard = ({ onCompleteQuest, settings }) => {
         console.error('Error loading tasks:', e);
       }
     }
-    
+
     if (savedProfile) {
       try {
         setUserProfile(JSON.parse(savedProfile));
@@ -35,7 +40,7 @@ const Dashboard = ({ onCompleteQuest, settings }) => {
         console.error('Error loading profile:', e);
       }
     }
-    
+
     if (savedTimers) {
       try {
         setSpeedrunTimers(JSON.parse(savedTimers));
@@ -44,17 +49,29 @@ const Dashboard = ({ onCompleteQuest, settings }) => {
       }
     }
   }, []);
-  
-  // Save to localStorage whenever data changes
+
+  // Save to localStorage whenever data changes (skip on initial mount)
   useEffect(() => {
+    if (isInitialMountTasks.current) {
+      isInitialMountTasks.current = false;
+      return;
+    }
     localStorage.setItem('adhd_quest_tasks', JSON.stringify(tasks));
   }, [tasks]);
-  
+
   useEffect(() => {
+    if (isInitialMountProfile.current) {
+      isInitialMountProfile.current = false;
+      return;
+    }
     localStorage.setItem('adhd_quest_profile', JSON.stringify(userProfile));
   }, [userProfile]);
-  
+
   useEffect(() => {
+    if (isInitialMountTimers.current) {
+      isInitialMountTimers.current = false;
+      return;
+    }
     localStorage.setItem('adhd_quest_timers', JSON.stringify(speedrunTimers));
   }, [speedrunTimers]);
   
@@ -95,7 +112,7 @@ const Dashboard = ({ onCompleteQuest, settings }) => {
         setSpeedrunTimers(prev => ({
           ...prev,
           [newTask.id]: {
-            taskStartTime: null,
+            taskStartTime: Date.now(), // Start timer immediately
             subtaskTimes: {},
             currentSubtaskStart: null,
             totalTime: 0
