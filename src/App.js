@@ -4,6 +4,7 @@ import WidgetLibrary from './components/WidgetLibrary';
 import Dashboard from './components/Dashboard';
 import CompletedQuests from './components/CompletedQuests';
 import Settings from './components/Settings';
+import QuickCapture from './components/QuickCapture';
 import PlaceholderWidget from './components/PlaceholderWidget';
 import './styles/global.css';
 
@@ -171,7 +172,7 @@ function App() {
         return <PlaceholderWidget name="MOOD LOGGER" icon="😊" description="Track your energy and emotions - Coming soon!" />;
       
       case 'quick-capture':
-        return <PlaceholderWidget name="QUICK CAPTURE" icon="📝" description="Rapid idea collection - Coming soon!" />;
+        return <QuickCapture />;
       
       case 'calendar':
         return <PlaceholderWidget name="CALENDAR" icon="📅" description="Daily planning view - Coming soon!" />;

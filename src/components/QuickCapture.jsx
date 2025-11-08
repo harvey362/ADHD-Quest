@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/quickcapture.css';
 
 const QuickCapture = () => {
+  const [activeTab, setActiveTab] = useState('notes'); // 'notes' or 'drawing'
   const [captures, setCaptures] = useState([]);
   const [newCapture, setNewCapture] = useState('');
   const [newTags, setNewTags] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [filterTag, setFilterTag] = useState('all');
+
+  // Drawing state
+  const [drawings, setDrawings] = useState([]);
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [currentColor, setCurrentColor] = useState('#00FF00');
+  const [brushSize, setBrushSize] = useState(3);
+  const [currentTool, setCurrentTool] = useState('pencil'); // 'pencil' or 'eraser'
+  const canvasRef = useRef(null);
+  const [canvasContext, setCanvasContext] = useState(null);
   
   // Load captures from localStorage
   useEffect(() => {
@@ -18,12 +28,37 @@ const QuickCapture = () => {
         console.error('Error loading captures:', e);
       }
     }
+
+    const savedDrawings = localStorage.getItem('adhd_quest_drawings');
+    if (savedDrawings) {
+      try {
+        setDrawings(JSON.parse(savedDrawings));
+      } catch (e) {
+        console.error('Error loading drawings:', e);
+      }
+    }
   }, []);
-  
+
   // Save captures to localStorage
   useEffect(() => {
     localStorage.setItem('adhd_quest_captures', JSON.stringify(captures));
   }, [captures]);
+
+  // Save drawings to localStorage
+  useEffect(() => {
+    localStorage.setItem('adhd_quest_drawings', JSON.stringify(drawings));
+  }, [drawings]);
+
+  // Initialize canvas
+  useEffect(() => {
+    if (canvasRef.current && !canvasContext) {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d');
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      setCanvasContext(ctx);
+    }
+  }, [canvasRef.current, activeTab]);
   
   const generateId = () => {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
@@ -88,23 +123,100 @@ const QuickCapture = () => {
     const minutes = Math.floor(diff / 60000);
     const hours = Math.floor(diff / 3600000);
     const days = Math.floor(diff / 86400000);
-    
+
     if (minutes < 1) return 'Just now';
     if (minutes < 60) return `${minutes}m ago`;
     if (hours < 24) return `${hours}h ago`;
     if (days < 7) return `${days}d ago`;
     return date.toLocaleDateString();
   };
+
+  // Drawing functions
+  const startDrawing = (e) => {
+    if (!canvasContext) return;
+    setIsDrawing(true);
+    const rect = canvasRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    canvasContext.beginPath();
+    canvasContext.moveTo(x, y);
+  };
+
+  const draw = (e) => {
+    if (!isDrawing || !canvasContext) return;
+    const rect = canvasRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    canvasContext.strokeStyle = currentTool === 'eraser' ? '#000000' : currentColor;
+    canvasContext.lineWidth = currentTool === 'eraser' ? brushSize * 3 : brushSize;
+    canvasContext.lineTo(x, y);
+    canvasContext.stroke();
+  };
+
+  const stopDrawing = () => {
+    setIsDrawing(false);
+  };
+
+  const clearCanvas = () => {
+    if (!canvasContext || !canvasRef.current) return;
+    canvasContext.fillStyle = '#000000';
+    canvasContext.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+  };
+
+  const saveDrawing = () => {
+    if (!canvasRef.current) return;
+    const dataUrl = canvasRef.current.toDataURL();
+    const drawing = {
+      id: generateId(),
+      imageData: dataUrl,
+      createdAt: new Date().toISOString()
+    };
+    setDrawings(prev => [drawing, ...prev]);
+    clearCanvas();
+    alert('Drawing saved!');
+  };
+
+  const deleteDrawing = (id) => {
+    if (window.confirm('Delete this drawing?')) {
+      setDrawings(prev => prev.filter(d => d.id !== id));
+    }
+  };
+
+  const clearAllDrawings = () => {
+    if (window.confirm('Delete ALL drawings? This cannot be undone!')) {
+      setDrawings([]);
+    }
+  };
   
   return (
     <div className="quick-capture">
       <div className="capture-header">
         <h2>[ QUICK CAPTURE ]</h2>
-        <p className="capture-subtitle">Brain Dump - Capture thoughts instantly</p>
+        <p className="capture-subtitle">Brain Dump - Capture thoughts & sketches instantly</p>
       </div>
-      
-      {/* Input Section */}
-      <div className="capture-input-section">
+
+      {/* Tab Switcher */}
+      <div className="capture-tabs">
+        <button
+          className={`capture-tab ${activeTab === 'notes' ? 'active' : ''}`}
+          onClick={() => setActiveTab('notes')}
+        >
+          NOTES
+        </button>
+        <button
+          className={`capture-tab ${activeTab === 'drawing' ? 'active' : ''}`}
+          onClick={() => setActiveTab('drawing')}
+        >
+          DRAWING
+        </button>
+      </div>
+
+      {/* NOTES TAB */}
+      {activeTab === 'notes' && (
+        <>
+          {/* Input Section */}
+          <div className="capture-input-section">
         <textarea
           value={newCapture}
           onChange={(e) => setNewCapture(e.target.value)}
@@ -235,6 +347,118 @@ const QuickCapture = () => {
           <span>•</span>
           <span>Tags: {allTags.length}</span>
         </div>
+      )}
+        </>
+      )}
+
+      {/* DRAWING TAB */}
+      {activeTab === 'drawing' && (
+        <>
+          <div className="drawing-section">
+            {/* Drawing Controls */}
+            <div className="drawing-controls">
+              <div className="drawing-tools">
+                <button
+                  className={`tool-btn ${currentTool === 'pencil' ? 'active' : ''}`}
+                  onClick={() => setCurrentTool('pencil')}
+                  title="Pencil"
+                >
+                  PENCIL
+                </button>
+                <button
+                  className={`tool-btn ${currentTool === 'eraser' ? 'active' : ''}`}
+                  onClick={() => setCurrentTool('eraser')}
+                  title="Eraser"
+                >
+                  ERASER
+                </button>
+              </div>
+
+              <div className="drawing-colors">
+                <span className="control-label">COLOR:</span>
+                {['#00FF00', '#FF0000', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#FFFFFF'].map(color => (
+                  <button
+                    key={color}
+                    className={`color-btn ${currentColor === color ? 'active' : ''}`}
+                    style={{ backgroundColor: color }}
+                    onClick={() => setCurrentColor(color)}
+                    title={color}
+                  />
+                ))}
+              </div>
+
+              <div className="drawing-brush-size">
+                <span className="control-label">SIZE:</span>
+                <input
+                  type="range"
+                  min="1"
+                  max="20"
+                  value={brushSize}
+                  onChange={(e) => setBrushSize(Number(e.target.value))}
+                  className="brush-slider"
+                />
+                <span className="brush-size-display">{brushSize}px</span>
+              </div>
+
+              <div className="drawing-actions">
+                <button onClick={clearCanvas} className="drawing-btn">
+                  CLEAR
+                </button>
+                <button onClick={saveDrawing} className="drawing-btn save">
+                  SAVE DRAWING
+                </button>
+              </div>
+            </div>
+
+            {/* Canvas */}
+            <div className="canvas-container">
+              <canvas
+                ref={canvasRef}
+                width={800}
+                height={600}
+                className="drawing-canvas"
+                onMouseDown={startDrawing}
+                onMouseMove={draw}
+                onMouseUp={stopDrawing}
+                onMouseLeave={stopDrawing}
+                style={{ backgroundColor: '#000000', cursor: currentTool === 'eraser' ? 'crosshair' : 'default' }}
+              />
+            </div>
+
+            {/* Saved Drawings */}
+            {drawings.length > 0 && (
+              <>
+                <div className="drawings-header">
+                  <h3>SAVED DRAWINGS ({drawings.length})</h3>
+                  <button onClick={clearAllDrawings} className="clear-all-btn">
+                    DELETE ALL
+                  </button>
+                </div>
+                <div className="drawings-gallery">
+                  {drawings.map(drawing => (
+                    <div key={drawing.id} className="drawing-card">
+                      <div className="drawing-card-header">
+                        <span className="drawing-date">{formatDate(drawing.createdAt)}</span>
+                        <button
+                          onClick={() => deleteDrawing(drawing.id)}
+                          className="drawing-delete-btn"
+                          title="Delete"
+                        >
+                          X
+                        </button>
+                      </div>
+                      <img
+                        src={drawing.imageData}
+                        alt="Saved drawing"
+                        className="drawing-thumbnail"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </>
       )}
     </div>
   );

@@ -276,31 +276,315 @@
   align-items: center;
 }
 
+/* Tabs */
+.capture-tabs {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 3px solid var(--color-green-dark);
+}
+
+.capture-tab {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--color-green-dark);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: -3px;
+}
+
+.capture-tab:hover {
+  color: var(--color-green);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.capture-tab.active {
+  color: var(--color-green);
+  border-bottom-color: var(--color-green);
+}
+
+/* Drawing Section */
+.drawing-section {
+  padding: var(--spacing-md) 0;
+}
+
+.drawing-controls {
+  border: 3px solid var(--color-green);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  background-color: rgba(0, 255, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.drawing-tools {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.tool-btn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  background-color: transparent;
+  border: 2px solid var(--color-green-dark);
+  color: var(--color-green-dark);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tool-btn:hover {
+  border-color: var(--color-green);
+  color: var(--color-green);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.tool-btn.active {
+  background-color: var(--color-green);
+  color: var(--color-black);
+  border-color: var(--color-green);
+}
+
+.drawing-colors {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.control-label {
+  font-size: 12px;
+  color: var(--color-green-dark);
+  font-family: var(--font-secondary);
+}
+
+.color-btn {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--color-green-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.color-btn.active {
+  border: 3px solid var(--color-green);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+}
+
+.drawing-brush-size {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.brush-slider {
+  flex: 1;
+  max-width: 200px;
+  height: 6px;
+  background: var(--color-green-dark);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.brush-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--color-green);
+  cursor: pointer;
+  border: 2px solid var(--color-black);
+}
+
+.brush-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--color-green);
+  cursor: pointer;
+  border: 2px solid var(--color-black);
+}
+
+.brush-size-display {
+  font-size: 14px;
+  color: var(--color-green);
+  font-family: var(--font-secondary);
+  min-width: 50px;
+}
+
+.drawing-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.drawing-btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 12px;
+  background-color: transparent;
+  border: 2px solid var(--color-green-dark);
+  color: var(--color-green-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drawing-btn:hover {
+  border-color: var(--color-green);
+  color: var(--color-green);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.drawing-btn.save {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.drawing-btn.save:hover {
+  background-color: var(--color-green);
+  color: var(--color-black);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+/* Canvas */
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+  border: 3px solid var(--color-green);
+  padding: var(--spacing-md);
+  background-color: rgba(0, 255, 0, 0.02);
+}
+
+.drawing-canvas {
+  border: 2px solid var(--color-green-dark);
+  cursor: crosshair;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Drawings Gallery */
+.drawings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-green-dark);
+}
+
+.drawings-header h3 {
+  font-size: 16px;
+  color: var(--color-green);
+}
+
+.drawings-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.drawing-card {
+  border: 3px solid var(--color-green-dark);
+  padding: var(--spacing-sm);
+  background-color: rgba(0, 255, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.drawing-card:hover {
+  border-color: var(--color-green);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.drawing-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.drawing-date {
+  font-size: 12px;
+  font-family: var(--font-secondary);
+  color: var(--color-green-darker);
+}
+
+.drawing-delete-btn {
+  background-color: transparent;
+  border: 1px solid var(--color-green-dark);
+  color: var(--color-green-dark);
+  padding: 2px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drawing-delete-btn:hover {
+  border-color: var(--color-green);
+  color: var(--color-green);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.drawing-thumbnail {
+  width: 100%;
+  height: auto;
+  border: 2px solid var(--color-green-dark);
+  background-color: var(--color-black);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .capture-input-row {
     flex-direction: column;
   }
-  
+
   .capture-filters {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .capture-search {
     width: 100%;
   }
-  
+
   .tag-filters {
     justify-content: center;
   }
-  
+
   .capture-stats {
     flex-direction: column;
     gap: var(--spacing-xs);
   }
-  
+
   .capture-stats span:nth-child(2n) {
     display: none;
+  }
+
+  .drawing-controls {
+    flex-direction: column;
+  }
+
+  .drawing-tools,
+  .drawing-actions {
+    flex-wrap: wrap;
+  }
+
+  .drawings-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .canvas-container canvas {
+    max-width: 100%;
+    height: auto;
   }
 }
