@@ -43,7 +43,7 @@ export const validatedLocalStorage = {
       console.error(`Failed to validate localStorage key "${key}":`, error);
 
       // In production, return null to prevent crashes
-      if (process.env.NODE_ENV === 'production') {
+      if (process.env['NODE_ENV'] === 'production') {
         console.warn(`Clearing corrupt localStorage key: ${key}`);
         localStorage.removeItem(key);
         return null;
@@ -75,7 +75,7 @@ export const validatedLocalStorage = {
       console.error(`Failed to validate data for localStorage key "${key}":`, error);
 
       // In production, log but don't crash
-      if (process.env.NODE_ENV === 'production') {
+      if (process.env['NODE_ENV'] === 'production') {
         console.error('Skipping invalid localStorage write');
         return;
       }
