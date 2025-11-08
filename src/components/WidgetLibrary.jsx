@@ -39,13 +39,6 @@ const WidgetLibrary = ({ onSelectWidget, userSettings }) => {
       description: 'Daily planning view'
     },
     {
-      id: 'time-estimate',
-      name: 'TIME TRAINER',
-      icon: '⏰',
-      flavorText: '▼ PRACTICE',
-      description: 'Improve time estimation'
-    },
-    {
       id: 'settings',
       name: 'SETTINGS',
       icon: '⚙️',
