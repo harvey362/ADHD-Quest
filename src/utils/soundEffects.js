@@ -7,6 +7,17 @@ class SoundEffects {
   constructor() {
     this.audioContext = null;
     this.enabled = false;
+    this.soundSettings = {
+      clickSoft: true,
+      clickHard: true,
+      clickDigital: true,
+      keyTypewriter: true,
+      keyThock: true,
+      keyMembrane: true,
+      effects: true, // success, complete, error, etc.
+    };
+    this.currentClickSound = 'clickSoft';
+    this.currentKeySound = 'keyTypewriter';
     this.init();
   }
 
@@ -34,6 +45,22 @@ class SoundEffects {
     return this.enabled;
   }
 
+  setSoundSettings(settings) {
+    this.soundSettings = { ...this.soundSettings, ...settings };
+  }
+
+  getSoundSettings() {
+    return { ...this.soundSettings };
+  }
+
+  setClickSound(type) {
+    this.currentClickSound = type;
+  }
+
+  setKeySound(type) {
+    this.currentKeySound = type;
+  }
+
   /**
    * Play a sound effect
    * @param {string} type - Type of sound effect
@@ -48,29 +75,59 @@ class SoundEffects {
       }
 
       switch (type) {
+        // Click sounds
         case 'click':
-          this.playClick();
+          if (this.soundSettings[this.currentClickSound]) {
+            this[this.currentClickSound]();
+          }
           break;
+        case 'clickSoft':
+          if (this.soundSettings.clickSoft) this.clickSoft();
+          break;
+        case 'clickHard':
+          if (this.soundSettings.clickHard) this.clickHard();
+          break;
+        case 'clickDigital':
+          if (this.soundSettings.clickDigital) this.clickDigital();
+          break;
+
+        // Keyboard sounds
+        case 'key':
+          if (this.soundSettings[this.currentKeySound]) {
+            this[this.currentKeySound]();
+          }
+          break;
+        case 'keyTypewriter':
+          if (this.soundSettings.keyTypewriter) this.keyTypewriter();
+          break;
+        case 'keyThock':
+          if (this.soundSettings.keyThock) this.keyThock();
+          break;
+        case 'keyMembrane':
+          if (this.soundSettings.keyMembrane) this.keyMembrane();
+          break;
+
+        // Effect sounds
         case 'success':
-          this.playSuccess();
+          if (this.soundSettings.effects) this.playSuccess();
           break;
         case 'complete':
-          this.playComplete();
+          if (this.soundSettings.effects) this.playComplete();
           break;
         case 'error':
-          this.playError();
+          if (this.soundSettings.effects) this.playError();
           break;
         case 'start':
-          this.playStart();
+          if (this.soundSettings.effects) this.playStart();
           break;
         case 'stop':
-          this.playStop();
+          if (this.soundSettings.effects) this.playStop();
           break;
         case 'powerup':
-          this.playPowerUp();
+          if (this.soundSettings.effects) this.playPowerUp();
           break;
         case 'coin':
-          this.playCoin();
+          if (this.soundSettings.effects) this.playCoin();
           break;
         default:
           console.warn('Unknown sound effect:', type);
@@ -103,10 +160,84 @@ class SoundEffects {
   }
 
   /**
-   * Click sound - short blip
+   * Click sounds - various styles
    */
-  playClick() {
+  clickSoft() {
+    // Soft mechanical click
+    this.playTone(600, 0.04, 'sine', 0.15);
+  }
+
+  clickHard() {
+    // Hard mechanical click
+    this.playTone(1200, 0.03, 'square', 0.25);
+  }
+
+  clickDigital() {
+    // Digital beep click
     this.playTone(800, 0.05, 'square', 0.2);
+  }
+
+  /**
+   * Keyboard typing sounds
+   */
+  keyTypewriter() {
+    // Classic typewriter sound
+    const oscillator = this.audioContext.createOscillator();
+    const gainNode = this.audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(this.audioContext.destination);
+
+    oscillator.type = 'square';
+    oscillator.frequency.value = 200;
+
+    gainNode.gain.setValueAtTime(0.2, this.audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.05);
+
+    oscillator.start(this.audioContext.currentTime);
+    oscillator.stop(this.audioContext.currentTime + 0.05);
+
+    // Add metallic ping
+    setTimeout(() => {
+      this.playTone(1200, 0.02, 'triangle', 0.1);
+    }, 20);
+  }
+
+  keyThock() {
+    // Deep thocky mechanical keyboard sound
+    const oscillator = this.audioContext.createOscillator();
+    const gainNode = this.audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(this.audioContext.destination);
+
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(150, this.audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(80, this.audioContext.currentTime + 0.04);
+
+    gainNode.gain.setValueAtTime(0.25, this.audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.06);
+
+    oscillator.start(this.audioContext.currentTime);
+    oscillator.stop(this.audioContext.currentTime + 0.06);
+  }
+
+  keyMembrane() {
+    // Soft membrane keyboard sound
+    const oscillator = this.audioContext.createOscillator();
+    const gainNode = this.audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(this.audioContext.destination);
+
+    oscillator.type = 'triangle';
+    oscillator.frequency.value = 400;
+
+    gainNode.gain.setValueAtTime(0.15, this.audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.03);
+
+    oscillator.start(this.audioContext.currentTime);
+    oscillator.stop(this.audioContext.currentTime + 0.03);
   }
 
   /**
@@ -216,6 +347,22 @@ export const toggleSound = (enabled) => {
 
 export const isSoundEnabled = () => {
   return soundEffects.isEnabled();
+};
+
+export const setSoundSettings = (settings) => {
+  soundEffects.setSoundSettings(settings);
+};
+
+export const getSoundSettings = () => {
+  return soundEffects.getSoundSettings();
+};
+
+export const setClickSound = (type) => {
+  soundEffects.setClickSound(type);
+};
+
+export const setKeySound = (type) => {
+  soundEffects.setKeySound(type);
 };
 
 export default soundEffects;
