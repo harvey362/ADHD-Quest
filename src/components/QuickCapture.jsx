@@ -17,7 +17,11 @@ const QuickCapture = () => {
   const [currentTool, setCurrentTool] = useState('pencil'); // 'pencil' or 'eraser'
   const canvasRef = useRef(null);
   const [canvasContext, setCanvasContext] = useState(null);
-  
+
+  // Track initial mount to prevent saving on first render
+  const isInitialMountCaptures = useRef(true);
+  const isInitialMountDrawings = useRef(true);
+
   // Load captures from localStorage
   useEffect(() => {
     const saved = localStorage.getItem('adhd_quest_captures');
@@ -39,13 +43,21 @@ const QuickCapture = () => {
     }
   }, []);
 
-  // Save captures to localStorage
+  // Save captures to localStorage (skip on initial mount)
   useEffect(() => {
+    if (isInitialMountCaptures.current) {
+      isInitialMountCaptures.current = false;
+      return;
+    }
     localStorage.setItem('adhd_quest_captures', JSON.stringify(captures));
   }, [captures]);
 
-  // Save drawings to localStorage
+  // Save drawings to localStorage (skip on initial mount)
   useEffect(() => {
+    if (isInitialMountDrawings.current) {
+      isInitialMountDrawings.current = false;
+      return;
+    }
     localStorage.setItem('adhd_quest_drawings', JSON.stringify(drawings));
   }, [drawings]);
 

@@ -7,7 +7,6 @@ import Settings from './components/Settings';
 import QuickCapture from './components/QuickCapture';
 import PomodoroTimer from './components/PomodoroTimer';
 import CalendarView from './components/CalendarView';
-import TimeTrainer from './components/TimeTrainer';
 import PlaceholderWidget from './components/PlaceholderWidget';
 import { initSoundEffects, toggleSound, playSound } from './utils/soundEffects';
 import './styles/global.css';
@@ -220,9 +219,6 @@ function App() {
       case 'calendar':
         return <CalendarView />;
 
-      case 'time-estimate':
-        return <TimeTrainer />;
-      
       default:
         return <PlaceholderWidget name="UNKNOWN" icon="❓" description="Widget not found" />;
     }
