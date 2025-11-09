@@ -7,6 +7,7 @@ import Settings from './components/Settings';
 import QuickCapture from './components/QuickCapture';
 import PomodoroTimer from './components/PomodoroTimer';
 import CalendarView from './components/CalendarView';
+import TimeTrainer from './components/TimeTrainer';
 import PlaceholderWidget from './components/PlaceholderWidget';
 import { initSoundEffects, toggleSound, playSound } from './utils/soundEffects';
 import './styles/global.css';
@@ -19,6 +20,18 @@ function App() {
     themeColor: '#00FF00',
     scanlines: true,
     soundEffects: false,
+    soundEnabled: false,
+    soundSettings: {
+      clickSoft: true,
+      clickHard: true,
+      clickDigital: true,
+      keyTypewriter: true,
+      keyThock: true,
+      keyMembrane: true,
+      effects: true,
+    },
+    currentClickSound: 'clickSoft',
+    currentKeySound: 'keyTypewriter',
     scanlinesEnabled: true,
     hiddenWidgets: []
   });
@@ -131,19 +144,31 @@ function App() {
   const handleResetAll = () => {
     // Clear all localStorage
     localStorage.clear();
-    
+
     // Reset state
     setCompletedQuests([]);
     setSettings({
       themeColor: '#00FF00',
       scanlines: true,
       soundEffects: false,
+      soundEnabled: false,
+      soundSettings: {
+        clickSoft: true,
+        clickHard: true,
+        clickDigital: true,
+        keyTypewriter: true,
+        keyThock: true,
+        keyMembrane: true,
+        effects: true,
+      },
+      currentClickSound: 'clickSoft',
+      currentKeySound: 'keyTypewriter',
       scanlinesEnabled: true,
       hiddenWidgets: []
     });
-    
+
     applyTheme('#00FF00');
-    
+
     // Reload page to reset everything
     window.location.reload();
   };
@@ -195,6 +220,9 @@ function App() {
       case 'calendar':
         return <CalendarView />;
 
+      case 'time-estimate':
+        return <TimeTrainer />;
+      
       default:
         return <PlaceholderWidget name="UNKNOWN" icon="❓" description="Widget not found" />;
     }
