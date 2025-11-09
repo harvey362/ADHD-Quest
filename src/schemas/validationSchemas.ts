@@ -134,7 +134,7 @@ export const subtaskSchema = z.object({
   id: z.string(),
   text: nonEmptyStringSchema.max(500),
   completed: z.boolean(),
-  xp: xpSchema.optional().default(10),
+  xp: xpSchema.default(10),
   created_at: timestampSchema,
   completed_at: timestampSchema.optional().nullable(),
 });
@@ -560,9 +560,9 @@ export const apiResponseSchema = z.union([apiSuccessResponseSchema, apiErrorResp
 /**
  * Safe parse with detailed error reporting
  */
-export function validateData<T>(schema: z.ZodSchema<T>, data: unknown): {
+export function validateData<T extends z.ZodTypeAny>(schema: T, data: unknown): {
   success: boolean;
-  data?: T;
+  data?: z.output<T>;
   error?: string;
   issues?: z.ZodIssue[];
 } {
@@ -571,7 +571,7 @@ export function validateData<T>(schema: z.ZodSchema<T>, data: unknown): {
   if (result.success) {
     return {
       success: true,
-      data: result.data,
+      data: result.data as z.output<T>,
     };
   }
 
@@ -585,22 +585,22 @@ export function validateData<T>(schema: z.ZodSchema<T>, data: unknown): {
 /**
  * Validate or throw
  */
-export function validateOrThrow<T>(schema: z.ZodSchema<T>, data: unknown): T {
-  return schema.parse(data);
+export function validateOrThrow<T extends z.ZodTypeAny>(schema: T, data: unknown): z.output<T> {
+  return schema.parse(data) as z.output<T>;
 }
 
 /**
  * Create a validator middleware for services
  */
-export function createValidator<T>(schema: z.ZodSchema<T>) {
-  return (data: unknown): T => {
+export function createValidator<T extends z.ZodTypeAny>(schema: T) {
+  return (data: unknown): z.output<T> => {
     const result = validateData(schema, data);
 
     if (!result.success) {
       throw new Error(`Validation failed: ${result.error}`);
     }
 
-    return result.data as T;
+    return result.data as z.output<T>;
   };
 }
 

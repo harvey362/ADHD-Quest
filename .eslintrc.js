@@ -12,7 +12,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:jsx-a11y/recommended',
-    'plugin:security/recommended',
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -29,7 +28,6 @@ module.exports = {
     'react-hooks',
     '@typescript-eslint',
     'jsx-a11y',
-    'security',
     'import',
   ],
   rules: {
@@ -48,10 +46,6 @@ module.exports = {
     'react/prop-types': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-
-    // Security
-    'security/detect-object-injection': 'warn',
-    'security/detect-non-literal-regexp': 'warn',
 
     // General
     'no-console': ['warn', { allow: ['warn', 'error'] }],

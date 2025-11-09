@@ -28,7 +28,6 @@ import {
   soundPackSchema,
   dataExportSchema,
   validateData,
-  validateOrThrow,
   type SignUpData,
   type SignInData,
   type UserProfile,
@@ -350,7 +349,7 @@ class ValidationService {
       console.error('Issues:', result.issues);
 
       // In development, we can throw to catch issues early
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env['NODE_ENV'] === 'development') {
         throw new Error(`Invalid data in localStorage key "${key}": ${result.error}`);
       }
 

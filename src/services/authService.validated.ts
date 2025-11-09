@@ -178,7 +178,7 @@ class AuthServiceValidated {
       // STEP 1: Validate email
       const validation = validationService.validatePasswordReset(emailData);
 
-      if (!validation.success) {
+      if (!validation.success || !validation.data) {
         throw new Error(`Invalid email: ${validation.error}`);
       }
 
@@ -210,7 +210,7 @@ class AuthServiceValidated {
       // STEP 1: Validate email
       const validation = validationService.validatePasswordReset(emailData);
 
-      if (!validation.success) {
+      if (!validation.success || !validation.data) {
         throw new Error(`Invalid email: ${validation.error}`);
       }
 
