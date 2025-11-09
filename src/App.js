@@ -19,6 +19,18 @@ function App() {
     themeColor: '#00FF00',
     scanlines: true,
     soundEffects: false,
+    soundEnabled: false,
+    soundSettings: {
+      clickSoft: true,
+      clickHard: true,
+      clickDigital: true,
+      keyTypewriter: true,
+      keyThock: true,
+      keyMembrane: true,
+      effects: true,
+    },
+    currentClickSound: 'clickSoft',
+    currentKeySound: 'keyTypewriter',
     scanlinesEnabled: true,
     hiddenWidgets: []
   });
@@ -131,19 +143,31 @@ function App() {
   const handleResetAll = () => {
     // Clear all localStorage
     localStorage.clear();
-    
+
     // Reset state
     setCompletedQuests([]);
     setSettings({
       themeColor: '#00FF00',
       scanlines: true,
       soundEffects: false,
+      soundEnabled: false,
+      soundSettings: {
+        clickSoft: true,
+        clickHard: true,
+        clickDigital: true,
+        keyTypewriter: true,
+        keyThock: true,
+        keyMembrane: true,
+        effects: true,
+      },
+      currentClickSound: 'clickSoft',
+      currentKeySound: 'keyTypewriter',
       scanlinesEnabled: true,
       hiddenWidgets: []
     });
-    
+
     applyTheme('#00FF00');
-    
+
     // Reload page to reset everything
     window.location.reload();
   };
